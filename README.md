@@ -31,8 +31,8 @@ This project is a small document-based question answering system. I chose the ci
 
 ## Chunking Strategy
 
-**Chunk size:**
-**Overlap:**
+**Chunk size: 300-500**
+**Overlap: 20% to 30%**
 
 <!-- What about YOUR documents made you pick these numbers? Short posts and
      long sectioned guides don't want the same chunking, and "800 seemed
@@ -43,6 +43,8 @@ This project is a small document-based question answering system. I chose the ci
      more than pretending you got it right first time.
 
      Milestone 3. -->
+
+     I chose my chunk size and overlap based on the structure of the documents in this corpus. The advice posts are short and self-contained, while the city guides are longer and organized into sections, so a single chunk size would either split important facts apart or merge unrelated material. I used a moderate chunk size so each chunk could hold one clear idea without losing context between nearby paragraphs. After testing, I adjusted the overlap because some answers were split across section boundaries, and the overlap helped keep related information together.
 
 ## Sample Chunks
 
@@ -55,33 +57,91 @@ This project is a small document-based question answering system. I chose the ci
 
      Milestone 3. -->
 
-**Chunk 1** — source: `— produced by:`
+**Chunk 1** — source: thread_bike_commute.txt#0 `— produced by: chunker.py::fallback_split`
+
+```
+THREAD: Is a bike worth it for a 20 minute walk commute?
+
+--- reply 1 (14 votes) ---
+Yeah. Cuts an 18 minute walk to about 6. The thing nobody mentions is storage — covered bike parking exists at three buildings and is full by 9am at all three.
+
+--- reply 2 (9 votes) ---
+Counterpoint, I sold mine. Between November and March the paths are either icy or salted and salt destroys a drivetrain in one season.
+
+--- reply 3 (22 votes) ---
+Both true. I keep a cheap bike for September to November and walk the rest of the year. Total cost was about $120for the bike and I don't care what happens to it.
+
+--- reply 4 (5 votes) ---
+If you do get one, the campus does free registration and it's the only reason I got mine back after it was taken.
+
+For each one, ask: could someone answer a question using only this,
+without reading what came before or after?
 
 ```
 
-```
-
-**Chunk 2** — source: `— produced by:`
+**Chunk 2** — source: thread_meal_plan_tier.txt#0 `— produced by: chunker.py::fallback_split`
 
 ```
+THREAD: Which meal plan tier is right?
+
+--- reply 1 (24 votes) ---
+Depends entirely on whether your building has a kitchen. Fenwick has kitchenettes, so people there go down a tierand cook two or three nights. Everywhere else, get the middle tier.
+
+--- reply 2 (19 votes) ---
+The highest tier only makes sense if you eat three meals a day in the halls every single day, which basically nobody does past October.
+
+--- reply 3 (11 votes) ---
+Remember you can only change it once and only in the first ten days. I waited and got stuck on a plan I didn't use.
+
+--- reply 4 (7 votes) ---
+Declining balance rolls within the semester but not between them. Spend it in December or lose it.
+
 
 ```
 
-**Chunk 3** — source: `— produced by:`
+**Chunk 3** — source: thread_parking.txt#0 `— produced by:chunker.py::fallback_split`
+
+```
+THREAD: Worth getting a parking permit?
+
+--- reply 1 (15 votes) ---
+West lots sell out in about three days in August. East lot never sells out but it's a 12 minute walk, at which point you might as well have parked on the street.
+
+--- reply 2 (21 votes) ---
+Street parking on Verrill is legal and free and unmarked, which is why half the upper years do it.
+
+--- reply 3 (8 votes) ---
+If you're commuting daily, the west permit is worth the August scramble. Otherwise don't bother.
 
 ```
 
-```
-
-**Chunk 4** — source: `— produced by:`
+**Chunk 4** — source: thread_printing.txt#0 `— produced by:chunker.py::fallback_split`
 
 ```
+THREAD: Is the printing quota enough?
+
+--- reply 1 (17 votes) ---
+For most people yes. $30 is about 600 pages black and white. It's the colour printing that eats it — eight times the cost per page.
+
+--- reply 2 (11 votes) ---
+Doesn't roll over between semesters. Print your readings in December rather than losing it.
+
 
 ```
 
-**Chunk 5** — source: `— produced by:`
+**Chunk 5** — source: thread_roommate_conflict.txt#0 `— produced by: chunker.py::fallback_split`
 
 ```
+THREAD: Roommate situation isn't working. What now?
+
+--- reply 1 (28 votes) ---
+Talk to your RA early, and frame it as 'we need help sorting this out' rather than 'move me'. Room changes are possible but the process starts with mediation and skipping that step slows it down.
+
+--- reply 2 (14 votes) ---
+Room changes happen at the semester boundary almost always, and mid-semester only in fairly serious cases.
+
+--- reply 3 (33 votes) ---
+Write down specifics before the meeting. 'It's not working' is hard to act on; 'guests four nights a week past 2am' is not.
 
 ```
 
@@ -90,15 +150,28 @@ This project is a small document-based question answering system. I chose the ci
 <!-- One complete question and answer, pasted as text, with the source line
      visible. Milestone 4. -->
 
-**Question:**
+**Question: What is the bus schedule between Brightwater and Kestrelford?**
 
-**Answer:**
+\*\*Answer:
+(best distance 0.274, cutoff 0.6)
+
+Based on the documents, buses run from Brightwater to Kestrelford roughly hourly on weekdays, every two hours on Saturdays, and do not run on Sundays.
+
+Sources:
+
+- `guide_kestrelford.md`
+- `guide_regional_transport.md`
+
+Sources retrieved: guide_accessibility.md, guide_brightwater.md, guide_kestrelford.md, guide_regional_transport.md
+
+1 model calls this session, 1191 tokens (1132 in, 59 out)
+\*\*
 
 ```
 
 ```
 
-**My relevance cutoff:**
+**My relevance cutoff: 0.6**
 
 <!-- The number you set in config.py, and how you got there.
 
