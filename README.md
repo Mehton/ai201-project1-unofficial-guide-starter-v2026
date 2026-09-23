@@ -168,6 +168,15 @@ Sources retrieved: guide_accessibility.md, guide_brightwater.md, guide_kestrelfo
 \*\*
 
 ```
+(best distance 0.331, cutoff 0.6)
+
+Based on the provided documents, the Kestrelford bus service runs hourly on weekdays and two-hourly on other times (though Sunday service is minimal to non-existent outside the Brightwater town routes).
+
+Source: `guide_regional_transport.md`
+
+Sources retrieved: guide_marchwood.md, guide_regional_transport.md, guide_seasons.md, guide_walking.md
+
+1 model calls this session, 448 tokens (395 in, 53 out)
 
 ```
 
@@ -182,9 +191,9 @@ Sources retrieved: guide_accessibility.md, guide_brightwater.md, guide_kestrelfo
 
      Milestone 4. -->
 
-| Question | In corpus? | Best distance |
-| -------- | ---------- | ------------- |
-|          |            |               |
+| Question                                                     | In corpus? | Best distance |
+| ------------------------------------------------------------ | ---------- | ------------- |
+| What is the bus schedule between Brightwater and Kestrelford | city_guide | 0.274         |
 
 ## How I Used AI
 
@@ -197,9 +206,9 @@ Sources retrieved: guide_accessibility.md, guide_brightwater.md, guide_kestrelfo
 
      Milestone 5. -->
 
-**1.**
+**1. I asked AI to explain me the prompts in simple words.**
 
-**2.**
+**2. Write me the command for all these steps. I will run them myself**
 
 <!-- ── Stretch features ─────────────────────────────────────────────────────
      Doing one? Say so here BEFORE you start. A feature this README never
