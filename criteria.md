@@ -58,7 +58,9 @@ in at least 4 of 5 tries.
 
 ---
 
-## 4. Something about your chunks
+**Revised in unit 2:**
+
+## 4. Chunks read as complete thoughts
 
 For at least 4 of 5 sampled chunks, the text reads as a complete thought without
 cutting a sentence or paragraph in half.
@@ -72,7 +74,9 @@ sectioned guides.
 
 ---
 
-## 5. Your choice
+**Revised in unit 2:**
+
+## 5. Answers include a concrete travel detail
 
 For at least 4 of 5 answers, the response includes a concrete travel detail from
 its source — such as a time, route, frequency, or road condition — instead of a

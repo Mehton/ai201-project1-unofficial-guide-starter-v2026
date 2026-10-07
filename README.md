@@ -31,7 +31,7 @@ This project is a small document-based question answering system. I chose the ci
 
 ## Chunking Strategy
 
-**Chunk size: 300-500**
+**Chunk size: 250-400**
 **Overlap: 20% to 30%**
 
 <!-- What about YOUR documents made you pick these numbers? Short posts and
@@ -236,13 +236,13 @@ Sources retrieved: guide_marchwood.md, guide_regional_transport.md, guide_season
 
      Milestone 1. -->
 
-| Criterion                              | Target | Run 1  | Run 2  | Run 3  | Verdict |
-| -------------------------------------- | ------ | ------ | ------ | ------ | ------- |
-| 1. Retrieved chunk contains the answer | 4 of 5 | 4 of 5 | 4 of 5 | 4 of 5 | MET     |
-| 2. Every answer names a source         | 5 of 5 | 5 of 5 | 5 of 5 | 5 of 5 | Met     |
-| 3. Gate stops out-of-corpus questions  | 4 of 5 | 5 of 5 | 5 of 5 | 5 of 5 | Met     |
-| 4.                                     |        |        |        |        |         |
-| 5.                                     |        |        |        |        |         |
+| Criterion                                   | Target | Run 1  | Run 2  | Run 3  | Verdict |
+| ------------------------------------------- | ------ | ------ | ------ | ------ | ------- |
+| 1. Retrieved chunk contains the answer      | 4 of 5 | 4 of 5 | 4 of 5 | 4 of 5 | MET     |
+| 2. Every answer names a source              | 5 of 5 | 4 of 5 | 4 of 5 | 4 of 5 | Missed  |
+| 3. Gate stops out-of-corpus questions       | 4 of 5 | 5 of 5 | 5 of 5 | 5 of 5 | MET     |
+| 4. Chunks read as complete thoughts         | 4 of 5 | 1 of 5 | 1 of 5 | 1 of 5 | Missed  |
+| 5. Answers include a concrete travel detail | 4 of 5 | 4 of 5 | 4 of 5 | 4 of 5 | MET     |
 
 <!-- Underneath, paste the REAL output for each criterion from one of your
      runs — the actual text your system produced, not a description of it.
@@ -407,13 +407,13 @@ The Kestrelford approach road is single-track with passing places for the final 
 
      Milestone 2. -->
 
-| #   | Criterion | Verdict | How I decided |
-| --- | --------- | ------- | ------------- |
-| 1   |           |         |               |
-| 2   |           |         |               |
-| 3   |           |         |               |
-| 4   |           |         |               |
-| 5   |           |         |               |
+| #   | Criterion                                | Verdict | How I decided                                                                                                                                                                                                                                                                                                                         |
+| --- | ---------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | Retrieved chunk contains the answer      | Met     | Retrieval is deterministic (identical distances and sources in all three runs), so this is one result, not three. Q1, Q4 and Q5 are clear hits. Q3 counts because guide_walking.md has the trackbed/1963 closure, which implies no active station. Q2 is a clear miss: guide_kestrelford.md has "an hour inland" but wasn't retrieved |
+| 2   | Every answer names a source              | Missed  | Q2's refusals name no file in any run, so it's 4 of 5 against a target of 5. Excluding refusals would be redefining the criterion after seeing the results. If you want that exclusion, it has to be in the target wording for the next round.                                                                                        |
+| 3   | Gate stops out-of-corpus questions       | MET     | All five questions passed the gate, so it never stopped anything.                                                                                                                                                                                                                                                                     |
+| 4   | Chunks read as complete thoughts         | Missed  | In my five-chunk sample, Chunk 4 ends mid-sentence, and Chunk 5 begins with a word fragment and ends mid-sentence. That means at least two chunks are incomplete, so the sample cannot meet my target of at least 4 of 5.                                                                                                             |
+| 5   | Answers include a concrete travel detail | MET     | Four of the five answers include a specific travel detail: Q1 gives journey and road information, Q3 mentions that the railway line closed in 1963, Q4 gives the bus frequency, and Q5 describes the approach road. Q2 could not provide the driving time. This meets my target of 4 of 5.                                            |
 
 ## Diagnoses
 
@@ -435,11 +435,13 @@ The Kestrelford approach road is single-track with passing places for the final 
 
      Milestone 3. -->
 
+     Criteria 2 appears to have a root cause in retrieval. The answer to the drive-time question is in guide_kestrelford.md—“Driving takes 55 minutes”—but that file was not among the four retrieved sources for that question. The generator therefore said it did not have enough information and gave no source citation. The file exists in the corpus and was retrieved for another question, so the evidence points to the relevant source being missed in this query’s top four results, rather than the information being absent from the corpus.
+
 ## The Improvement
 
-**What I changed:**
+**What I changed: Raised top-k from 4 to 6**
 
-**Why I picked it:**
+**Why I picked it:I picked this change because the drive-time question’s four retrieved sources didn’t include guide_kestrelford.md, which contains the 55-minute answer. Retrieving one additional chunk may bring in the missing evidence.**
 
 <!-- Connect it to a specific diagnosis above in one sentence. If you can't,
      you picked a fix because it sounded impressive. -->
@@ -449,13 +451,13 @@ The Kestrelford approach road is single-track with passing places for the final 
 <!-- Same format, same five criteria, three runs each.
      `python run_eval.py --label after` -->
 
-| Criterion                              | Target | Run 1 | Run 2 | Run 3 | Verdict |
-| -------------------------------------- | ------ | ----- | ----- | ----- | ------- |
-| 1. Retrieved chunk contains the answer | 4 of 5 |       |       |       |         |
-| 2. Every answer names a source         | 5 of 5 |       |       |       |         |
-| 3. Gate stops out-of-corpus questions  | 4 of 5 |       |       |       |         |
-| 4.                                     |        |       |       |       |         |
-| 5.                                     |        |       |       |       |         |
+| Criterion                                   | Target | Run 1  | Run 2  | Run 3  | Verdict |
+| ------------------------------------------- | ------ | ------ | ------ | ------ | ------- |
+| 1. Retrieved chunk contains the answer      | 4 of 5 | 4 of 5 | 4 of 5 | 4 of 5 | MET     |
+| 2. Every answer names a source              | 5 of 5 | 4 of 5 | 4 of 5 | 4 of 5 | Missed  |
+| 3. Gate stops out-of-corpus questions       | 4 of 5 | 5 of 5 | 5 of 5 | 5 of 5 | MET     |
+| 4. Chunks read as complete thoughts         | 4 of 5 | 1 of 5 | 1 of 5 | 1 of 5 | Missed  |
+| 5. Answers include a concrete travel detail | 4 of 5 | 4 of 5 | 4 of 5 | 4 of 5 | MET     |
 
 **Did it help?**
 
@@ -465,6 +467,8 @@ The Kestrelford approach road is single-track with passing places for the final 
      tell.
 
      Milestone 4. -->
+
+     Increasing top-k from 4 to 6 improved the bus-schedule answer: it now gives the complete weekday, Saturday, and Sunday schedule and cites guide_kestrelford.md. However, it did not fix the drive-time retrieval miss; that source is still absent from the results, and the system still says it cannot find the time. The out-of-corpus gate continued to refuse all five questions. So this change improved the bus answer, but did not improve the overall criterion scores.
 
 ## What's Still Broken
 
@@ -476,9 +480,17 @@ The Kestrelford approach road is single-track with passing places for the final 
 
      Milestone 5. -->
 
+     Criterion 2 is still missed because the drive-time answer says it does not have enough information and names no source. Increasing top-k to 6 did not retrieve guide_kestrelford.md, which contains the 55-minute answer. I would inspect the retrieval results for that question and adjust retrieval so the relevant guide is returned, then rerun the evaluation to check whether the answer includes its source.
+
+     Criterion 4 is still missed because the sample includes chunks that end or begin mid-sentence. They were produced by chunker.py::fallback_split. I would update the chunking approach to prefer sentence or paragraph boundaries, rebuild the index, and inspect a new five-chunk sample. I did not make a chunking change in this round; I focused on increasing top-k, so the chunk issue remains.
+
 ## What I'd Do Differently
 
 <!-- Knowing what you know now — which of your five criteria would you write
      differently, and why?
 
      Milestone 5. -->
+
+     I would define “complete thought” more precisely—for example, a chunk should not start or end in the middle of a sentence—and record all five sampled chunks before scoring them. I would also make Criterion 5 specify that the detail must be current and practically useful, so a historical detail such as a railway line’s closure does not create uncertainty about whether it counts. I would keep my original targets for this evaluation and use clearer wording for a future one.
+
+**1. AI helped me articulate my thoughts and write clearer explanations.**
