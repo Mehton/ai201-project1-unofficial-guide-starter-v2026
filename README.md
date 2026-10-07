@@ -230,6 +230,7 @@ Sources retrieved: guide_marchwood.md, guide_regional_transport.md, guide_season
      writes it all into results/ for you. Targets come from criteria.md; the
      verdict column is your call.
 
+
      Criterion 3 is measured in one deterministic pass rather than three, so
      the same number goes in all three run columns. That's correct, not lazy.
 
