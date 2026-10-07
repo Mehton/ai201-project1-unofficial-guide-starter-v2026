@@ -236,17 +236,165 @@ Sources retrieved: guide_marchwood.md, guide_regional_transport.md, guide_season
 
      Milestone 1. -->
 
-| Criterion                              | Target | Run 1 | Run 2 | Run 3 | Verdict |
-| -------------------------------------- | ------ | ----- | ----- | ----- | ------- |
-| 1. Retrieved chunk contains the answer | 4 of 5 |       |       |       |         |
-| 2. Every answer names a source         | 5 of 5 |       |       |       |         |
-| 3. Gate stops out-of-corpus questions  | 4 of 5 |       |       |       |         |
-| 4.                                     |        |       |       |       |         |
-| 5.                                     |        |       |       |       |         |
+| Criterion                              | Target | Run 1  | Run 2  | Run 3  | Verdict |
+| -------------------------------------- | ------ | ------ | ------ | ------ | ------- |
+| 1. Retrieved chunk contains the answer | 4 of 5 | 4 of 5 | 4 of 5 | 4 of 5 | MET     |
+| 2. Every answer names a source         | 5 of 5 | 5 of 5 | 5 of 5 | 5 of 5 | Met     |
+| 3. Gate stops out-of-corpus questions  | 4 of 5 | 5 of 5 | 5 of 5 | 5 of 5 | Met     |
+| 4.                                     |        |        |        |        |         |
+| 5.                                     |        |        |        |        |         |
 
 <!-- Underneath, paste the REAL output for each criterion from one of your
      runs — the actual text your system produced, not a description of it.
      Name the file and function that produced it. -->
+
+### How do I get to Kestrelford? — run 1
+
+- Best distance: 0.3516 (passed the gate)
+- Sources retrieved: guide_accessibility.md, guide_kestrelford.md, guide_regional_transport.md, guide_walking.md
+
+```
+To get to Kestrelford, you can drive, as it is located an hour inland from Brightwater (guide_kestrelford.md). The final eight minutes of the approach road are single-track with passing places (guide_regional_transport.md). However, the approach road is not gritted above the second village and can become impassable in snow during winters (guide_walking.md).
+```
+
+### How do I get to Kestrelford? — run 2
+
+- Best distance: 0.3516 (passed the gate)
+- Sources retrieved: guide_accessibility.md, guide_kestrelford.md, guide_regional_transport.md, guide_walking.md
+
+```
+To get to Kestrelford, you drive an hour inland from Brightwater (guide_kestrelford.md). The final eight minutes of the approach road are single-track with passing places (guide_regional_transport.md). Note that the approach road is not gritted above the second village and becomes impassable in snow (guide_walking.md).
+```
+
+### How do I get to Kestrelford? — run 3
+
+- Best distance: 0.3516 (passed the gate)
+- Sources retrieved: guide_accessibility.md, guide_kestrelford.md, guide_regional_transport.md, guide_walking.md
+
+```
+To get to Kestrelford, you drive an hour inland from Brightwater (`guide_kestrelford.md`). The final eight minutes of the approach road are single-track with passing places (`guide_regional_transport.md`), and the road is not gritted above the second village, making it impassable in snow (`guide_walking.md`).
+```
+
+### How long does it take to drive from Brightwater to Kestrelford? — run 1
+
+- Best distance: 0.3169 (passed the gate)
+- Sources retrieved: guide_pellew_sands.md, guide_regional_transport.md, guide_seasons.md, guide_walking.md
+
+```
+Based on the provided documents, there is no mention of how long it takes to drive from Brightwater to Kestrelford. Therefore, I don't have enough information to answer the question.
+```
+
+### How long does it take to drive from Brightwater to Kestrelford? — run 2
+
+- Best distance: 0.3169 (passed the gate)
+- Sources retrieved: guide_pellew_sands.md, guide_regional_transport.md, guide_seasons.md, guide_walking.md
+
+```
+Based on the provided documents, there is no mention of how long it takes to drive from Brightwater to Kestrelford. Therefore, I do not have enough information to answer your question.
+```
+
+### How long does it take to drive from Brightwater to Kestrelford? — run 3
+
+- Best distance: 0.3169 (passed the gate)
+- Sources retrieved: guide_pellew_sands.md, guide_regional_transport.md, guide_seasons.md, guide_walking.md
+
+```
+Based on the provided documents, there is no mention of how long it takes to drive from Brightwater to Kestrelford. Therefore, I do not have enough information to answer your question.
+```
+
+### Is there a railway station in Kestrelford? — run 1
+
+- Best distance: 0.3990 (passed the gate)
+- Sources retrieved: guide_accessibility.md, guide_kestrelford.md, guide_regional_transport.md, guide_walking.md
+
+```
+Based on the provided documents, there is no mention of whether or not there is a railway station in Kestrelford, though there is a reference to a "Kestrelford trackbed" that follows a "railway line closed in 1963" (`guide_walking.md`).
+
+I do not have enough information to confirm if an active railway station currently exists there.
+```
+
+### Is there a railway station in Kestrelford? — run 2
+
+- Best distance: 0.3990 (passed the gate)
+- Sources retrieved: guide_accessibility.md, guide_kestrelford.md, guide_regional_transport.md, guide_walking.md
+
+```
+Based on the provided documents, there is no mention of an active railway station in Kestrelford, though there is a "Kestrelford trackbed" that follows a railway line closed in 1963 (`guide_walking.md`).
+```
+
+### Is there a railway station in Kestrelford? — run 3
+
+- Best distance: 0.3990 (passed the gate)
+- Sources retrieved: guide_accessibility.md, guide_kestrelford.md, guide_regional_transport.md, guide_walking.md
+
+```
+Based on the provided documents, there is no direct mention of an active railway station in Kestrelford, though the text does mention that the "Kestrelford trackbed follows the railway line closed in 1963" (`guide_walking.md`) and references a "Kestrelford service" that is "hourly on weekdays" (`guide_regional_transport.md`).
+
+Files used: `guide_walking.md`, `guide_regional_transport.md`
+```
+
+### What is the bus schedule between Brightwater and Kestrelford? — run 1
+
+- Best distance: 0.3308 (passed the gate)
+- Sources retrieved: guide_marchwood.md, guide_regional_transport.md, guide_seasons.md, guide_walking.md
+
+```
+Based on the provided documents, the Kestrelford service is hourly on weekdays and two-hourly on other days (though the exact frequency for non-weekdays is implied to be less, with Sunday service being minimal to non-existent outside Brightwater town routes).
+
+Source: `guide_regional_transport.md`
+```
+
+### What is the bus schedule between Brightwater and Kestrelford? — run 2
+
+- Best distance: 0.3308 (passed the gate)
+- Sources retrieved: guide_marchwood.md, guide_regional_transport.md, guide_seasons.md, guide_walking.md
+
+```
+Based on the provided documents, the Kestrelford service runs hourly on weekdays and two-hourly (though Sunday service is minimal to non-existent outside Brightwater town routes).
+
+Source: `guide_regional_transport.md`
+```
+
+### What is the bus schedule between Brightwater and Kestrelford? — run 3
+
+- Best distance: 0.3308 (passed the gate)
+- Sources retrieved: guide_marchwood.md, guide_regional_transport.md, guide_seasons.md, guide_walking.md
+
+```
+Based on the provided documents, the Kestrelford service runs hourly on weekdays and two-hourly (though Sunday service is minimal to non-existent outside Brightwater town routes).
+
+This information came from `guide_regional_transport.md`.
+```
+
+### What is the road like on the approach to Kestrelford? — run 1
+
+- Best distance: 0.3149 (passed the gate)
+- Sources retrieved: guide_accessibility.md, guide_kestrelford.md, guide_regional_transport.md, guide_walking.md
+
+```
+Based on the provided documents, the approach road to Kestrelford is not gritted above the second village and is impassable in snow (*guide_walking.md*). Additionally, the final eight minutes of the approach are single-track with passing places (*guide_regional_transport.md*).
+```
+
+### What is the road like on the approach to Kestrelford? — run 2
+
+- Best distance: 0.3149 (passed the gate)
+- Sources retrieved: guide_accessibility.md, guide_kestrelford.md, guide_regional_transport.md, guide_walking.md
+
+```
+Based on the provided documents:
+
+* The approach road is not gritted above the second village and is impassable in snow, which can cut the town off for a day or two most winters (*guide_walking.md*).
+* The final eight minutes of the approach is single-track with passing places, and the approaches overall have poor transport (*guide_regional_transport.md*).
+```
+
+### What is the road like on the approach to Kestrelford? — run 3
+
+- Best distance: 0.3149 (passed the gate)
+- Sources retrieved: guide_accessibility.md, guide_kestrelford.md, guide_regional_transport.md, guide_walking.md
+
+```
+The Kestrelford approach road is single-track with passing places for the final eight minutes (*guide_regional_transport.md*). Additionally, it is not gritted above the second village and becomes impassable in snow, which can cut the town off for a day or two most winters (*guide_walking.md*).
+```
 
 ## Verdicts
 
